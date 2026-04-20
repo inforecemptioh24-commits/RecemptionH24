@@ -1,0 +1,204 @@
+/* ============================================================
+   Receptionist AI H24 — Colors & Type
+   Extracted from uploads/Receptionist-AI-H24.html
+   ============================================================ */
+
+:root {
+  /* ---------- BACKGROUNDS (dark, layered) ---------- */
+  --bg:            #0a0f14;  /* page base — near-black navy */
+  --bg-2:          #0f1720;  /* alt sections, banded stripes */
+  --bg-3:          #141e2a;  /* cards, chat panel */
+
+  /* ---------- FOREGROUND ---------- */
+  --fg:            #e6edf3;  /* primary text (near-white, cool) */
+  --fg-dim:        #8b9aa8;  /* secondary / muted text */
+  --fg-on-accent:  #031a13;  /* text on green accent (very dark green) */
+
+  /* ---------- ACCENT (signature green) ---------- */
+  --accent:        #10d9a0;  /* primary signature color */
+  --accent-2:      #0bbf8a;  /* hover / pressed state */
+  --accent-3:      #3fe9c2;  /* gradient highlight end */
+  --accent-soft:   rgba(16, 217, 160, 0.12);   /* tinted bg fills */
+  --accent-ring:   rgba(16, 217, 160, 0.25);   /* pill borders, outlines */
+  --accent-glow:   rgba(16, 217, 160, 0.35);   /* hover shadow */
+
+  /* ---------- SEMANTIC / BRAND ---------- */
+  --whatsapp:      #25d366;  /* ONLY for the floating WhatsApp FAB */
+
+  /* ---------- BORDERS & DIVIDERS ---------- */
+  --border:        rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.14);
+
+  /* ---------- SHADOWS ---------- */
+  --shadow-card:   0 20px 60px rgba(0, 0, 0, 0.4);
+  --shadow-cta:    0 8px 30px rgba(16, 217, 160, 0.25);
+  --shadow-cta-hv: 0 12px 40px rgba(16, 217, 160, 0.35);
+  --shadow-wa:     0 8px 30px rgba(37, 211, 102, 0.45);
+
+  /* ---------- GRADIENTS ---------- */
+  --grad-accent:   linear-gradient(135deg, #10d9a0, #3fe9c2);
+  --grad-hero-glow: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(16,217,160,0.10), transparent 60%);
+  --grad-cta-panel: linear-gradient(135deg, rgba(16,217,160,0.08), rgba(16,217,160,0.02));
+
+  /* ---------- RADII ---------- */
+  --radius-sm:     10px;   /* inner chips, file rows */
+  --radius:        14px;   /* cards, sectors */
+  --radius-lg:     20px;   /* chat surface, kb panel */
+  --radius-xl:     24px;   /* final CTA panel */
+  --radius-pill:   999px;  /* pills, buttons */
+
+  /* ---------- SPACING ---------- */
+  --space-1:       4px;
+  --space-2:       8px;
+  --space-3:       12px;
+  --space-4:       16px;
+  --space-5:       20px;
+  --space-6:       24px;
+  --space-8:       32px;
+  --space-10:      40px;
+  --space-12:      48px;
+  --space-16:      64px;
+  --space-20:      80px;
+
+  /* ---------- LAYOUT ---------- */
+  --max-width:     1100px;
+  --container-px:  20px;
+
+  /* ============================================================
+     TYPOGRAPHY — Base
+     Site uses the native Apple/Segoe/Roboto system stack.
+     Inter is a good Google-Fonts substitute (FLAG: substitution).
+     ============================================================ */
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", Roboto,
+    Helvetica, Arial, sans-serif;
+  --font-mono:
+    ui-monospace, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+
+  --leading-tight:    1.1;
+  --leading-snug:     1.2;
+  --leading-normal:   1.4;
+  --leading-relaxed:  1.6;
+
+  --tracking-tight:   -0.02em;
+  --tracking-snug:    -0.015em;
+  --tracking-eyebrow:  0.08em;  /* uppercase labels */
+  --tracking-kicker:   0.1em;   /* small caps labels */
+}
+
+/* ============================================================
+   BASE / RESET
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--fg);
+  line-height: var(--leading-relaxed);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ============================================================
+   SEMANTIC TYPE
+   clamp()ed — scale fluidly from mobile to desktop.
+   Based directly on the source page's ranges.
+   ============================================================ */
+
+/* h1 — hero headline, heaviest weight */
+h1, .h1 {
+  font-size: clamp(2rem, 5.5vw, 3.4rem);
+  font-weight: 800;
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-tight);
+  margin: 0 0 20px;
+}
+
+/* h2 — section titles */
+h2, .h2 {
+  font-size: clamp(1.7rem, 4vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: var(--tracking-snug);
+  line-height: var(--leading-snug);
+  margin: 0 0 16px;
+}
+
+/* h3 — card titles */
+h3, .h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: var(--leading-snug);
+  margin: 0 0 8px;
+}
+
+/* lead / hero subcopy */
+.lead {
+  font-size: clamp(1rem, 2.2vw, 1.2rem);
+  color: var(--fg-dim);
+  line-height: var(--leading-relaxed);
+}
+
+/* body paragraph */
+p, .p {
+  font-size: 1rem;
+  line-height: var(--leading-relaxed);
+  color: var(--fg);
+  margin: 0;
+}
+
+.p-dim { color: var(--fg-dim); }
+
+/* section sub — the soft paragraph under h2 */
+.section-sub {
+  font-size: 1.05rem;
+  color: var(--fg-dim);
+  line-height: var(--leading-relaxed);
+}
+
+/* eyebrow — uppercase green kicker above h2 */
+.eyebrow {
+  display: inline-block;
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+}
+
+/* kicker — small caps label (knowledge-base card) */
+.kicker {
+  font-size: 0.8rem;
+  color: var(--fg-dim);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-kicker);
+}
+
+/* small — meta, captions, timestamps */
+small, .small {
+  font-size: 0.8rem;
+  color: var(--fg-dim);
+  line-height: var(--leading-normal);
+}
+
+/* chat bubble text size */
+.msg { font-size: 0.92rem; line-height: var(--leading-normal); }
+
+/* code / mono */
+code, kbd, pre {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+/* inline highlight — gradient accent on part of a heading */
+.hl {
+  background: var(--grad-accent);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+}
