@@ -1,0 +1,1499 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Receptionist AI H24 — Assistente virtuale WhatsApp sempre attivo per piccole imprese italiane.">
+<title>Receptionist AI H24 — Assistente WhatsApp 24/7</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper: #f1e7d1;
+  --paper-2: #e8dcc0;
+  --cream: #faf4e6;
+  --ink: #1a1612;
+  --ink-soft: #4a433b;
+  --ink-dim: #7a6f62;
+  --terra: #c2410c;
+  --terra-dark: #9a340a;
+  --ochre: #b4832e;
+  --olive: #5a6b3f;
+  --line: rgba(26,22,18,0.14);
+  --line-strong: rgba(26,22,18,0.32);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.55;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  position: relative;
+  letter-spacing: -0.005em;
+}
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  pointer-events: none; z-index: 1;
+  opacity: 0.55;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.08 0 0 0 0 0.05 0 0 0 0.11 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+nav, section, header, footer, main { position: relative; z-index: 2; }
+a { color: inherit; text-decoration: none; }
+::selection { background: var(--terra); color: var(--cream); }
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+
+/* ====== NAV + TABS ====== */
+nav.topnav {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(241,231,209,0.92);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border-bottom: 1px solid var(--line-strong);
+}
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 32px; max-width: 1200px; margin: 0 auto;
+  gap: 28px;
+}
+.brand { display: flex; align-items: baseline; gap: 12px; flex-shrink: 0; }
+.brand-mark {
+  font-family: "Fraunces", serif;
+  font-variation-settings: "SOFT" 80, "WONK" 1, "opsz" 144;
+  font-size: 1.55rem; font-weight: 600;
+  font-style: italic;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+.brand-dot { color: var(--terra); font-style: normal; }
+.brand-tag {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.7rem;
+  color: var(--ink-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  border-left: 1px solid var(--line-strong);
+  padding-left: 12px;
+  font-weight: 500;
+}
+
+/* Tabs with numero grande + titolino */
+.tabs {
+  display: flex; align-items: stretch; gap: 0;
+  border: 1px solid var(--ink);
+  background: var(--cream);
+}
+.tab-btn {
+  font-family: inherit;
+  padding: 10px 22px;
+  background: transparent;
+  color: var(--ink);
+  border: 0;
+  border-right: 1px solid var(--ink);
+  cursor: pointer;
+  transition: background .25s ease, color .25s ease;
+  display: inline-flex; align-items: center; gap: 12px;
+  text-align: left;
+  min-width: 0;
+}
+.tab-btn:last-child { border-right: 0; }
+.tab-label {
+  display: flex; flex-direction: column; gap: 1px; line-height: 1;
+}
+.tab-kicker {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  font-weight: 500;
+}
+.tab-title {
+  font-family: "Fraunces", serif;
+  font-variation-settings: "SOFT" 40, "opsz" 144;
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-top: 3px;
+}
+.tab-btn.active { background: var(--ink); color: var(--paper); }
+.tab-btn.active .tab-kicker { color: rgba(250,244,230,0.55); }
+.tab-btn.active .tab-title { color: var(--cream); }
+.tab-btn.active .tab-num-big { color: var(--terra); }
+.tab-btn:not(.active):hover { background: var(--paper); }
+.tab-btn:not(.active):hover .tab-title { color: var(--terra); }
+
+/* ====== TAB PANEL ====== */
+.tab-panel { display: none; }
+.tab-panel.active {
+  display: block;
+  animation: fadePanel .55s cubic-bezier(.4,0,.2,1);
+}
+@keyframes fadePanel {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ====== HERO ====== */
+.hero {
+  padding: 56px 0 80px;
+  position: relative;
+}
+.hero-meta-top {
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--ink-dim);
+  margin-bottom: 56px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.hero-meta-top .sep { color: var(--terra); }
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+.hero-left { position: relative; }
+.hero-pill {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 7px 16px;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  margin-bottom: 34px;
+  background: var(--cream);
+  font-weight: 500;
+}
+.hero-pill-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--terra);
+  animation: pulse 2s ease-out infinite;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(194,65,12,0.6); }
+  70% { box-shadow: 0 0 0 9px rgba(194,65,12,0); }
+  100% { box-shadow: 0 0 0 0 rgba(194,65,12,0); }
+}
+h1.headline {
+  font-family: "Fraunces", serif;
+  font-variation-settings: "SOFT" 50, "opsz" 144;
+  font-weight: 400;
+  font-size: clamp(2.8rem, 7vw, 5.6rem);
+  line-height: 0.94;
+  letter-spacing: -0.045em;
+  margin-bottom: 30px;
+  color: var(--ink);
+}
+h1.headline em {
+  font-style: italic;
+  font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+  color: var(--terra);
+  font-weight: 400;
+}
+h1.headline .bold { font-weight: 700; letter-spacing: -0.05em; }
+.hero-sub {
+  font-family: "Instrument Serif", serif;
+  font-size: 1.35rem;
+  line-height: 1.4;
+  color: var(--ink-soft);
+  max-width: 520px;
+  margin-bottom: 36px;
+}
+.hero-cta-row { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 36px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 15px 26px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform .2s ease, background .2s ease, color .2s ease, border-color .2s ease, box-shadow .2s ease;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+}
+.btn-primary:hover {
+  background: var(--terra);
+  border-color: var(--terra);
+  transform: translate(-3px, -3px);
+  box-shadow: 5px 5px 0 var(--ink);
+}
+.btn-ghost { background: transparent; color: var(--ink); }
+.btn-ghost:hover {
+  background: var(--ink);
+  color: var(--paper);
+  transform: translate(-3px, -3px);
+  box-shadow: 5px 5px 0 var(--terra);
+}
+.btn .arr { transition: transform .25s ease; }
+.btn:hover .arr { transform: translateX(4px); }
+.btn-big { padding: 18px 32px; font-size: 0.82rem; }
+.hero-meta-list {
+  display: flex; gap: 28px; flex-wrap: wrap;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.74rem;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+.hero-meta-list span { display: inline-flex; align-items: center; gap: 8px; }
+.hero-meta-list span::before {
+  content: '';
+  width: 6px; height: 6px;
+  background: var(--terra);
+  transform: rotate(45deg);
+}
+.hero-right { position: relative; padding-top: 30px; }
+.seal {
+  position: absolute;
+  top: -12px; right: -10px;
+  width: 130px; height: 130px;
+  border: 1.5px solid var(--terra);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--terra);
+  transform: rotate(-12deg);
+  z-index: 4;
+  background: var(--cream);
+  box-shadow: 0 4px 0 rgba(194,65,12,0.15);
+}
+.seal::before {
+  content: '';
+  position: absolute; inset: 6px;
+  border: 1px dashed var(--terra);
+  border-radius: 50%;
+  opacity: 0.55;
+}
+.seal-inner {
+  text-align: center; line-height: 1.3;
+  font-weight: 500; position: relative; z-index: 2;
+}
+.seal-inner em {
+  font-family: "Fraunces", serif; font-style: italic;
+  font-size: 1.4rem; display: block;
+  letter-spacing: -0.02em; font-weight: 500; margin: 2px 0;
+}
+.chat-card {
+  background: var(--cream);
+  border: 1px solid var(--ink);
+  padding: 30px 26px 24px;
+  max-width: 420px;
+  margin-left: auto;
+  position: relative;
+  transform: rotate(1.2deg);
+  box-shadow: 14px 14px 0 var(--ochre), 14px 14px 0 1px var(--ink);
+}
+.chat-card::before {
+  content: 'CHAT · 23 APR · 23:47';
+  position: absolute;
+  top: -10px; left: 18px;
+  background: var(--paper);
+  padding: 0 10px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.64rem;
+  letter-spacing: 0.18em;
+  color: var(--ink-dim);
+  font-weight: 500;
+}
+.chat-who {
+  font-family: "Fraunces", serif;
+  font-variation-settings: "SOFT" 40, "opsz" 144;
+  font-size: 1.1rem; font-weight: 500; font-style: italic;
+  padding-bottom: 14px; margin-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; gap: 10px;
+}
+.chat-who::after {
+  content: '';
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--olive); margin-left: auto;
+}
+.bubble {
+  padding: 10px 14px; margin-bottom: 8px;
+  font-size: 0.93rem; max-width: 86%;
+  line-height: 1.4; border-radius: 12px;
+}
+.bubble.user {
+  background: var(--paper-2); margin-left: auto;
+  border-bottom-right-radius: 3px; color: var(--ink);
+}
+.bubble.bot {
+  background: var(--ink); color: var(--cream);
+  border-bottom-left-radius: 3px;
+}
+.bubble .time {
+  font-size: 0.66rem; opacity: 0.55;
+  display: block; margin-top: 4px;
+  font-family: "IBM Plex Mono", monospace;
+  letter-spacing: 0.05em;
+}
+
+/* ====== STATEMENT (more united - softer break) ====== */
+.statement {
+  padding: 80px 0 90px;
+  text-align: center;
+  position: relative;
+  border-top: 1px solid var(--line);
+}
+.statement::before, .statement::after {
+  content: '✦';
+  position: absolute; color: var(--terra);
+  font-size: 1.1rem; top: 30px; left: 50%;
+  transform: translateX(-50%);
+}
+.statement::after { top: auto; bottom: 30px; }
+.statement p {
+  font-family: "Fraunces", serif;
+  font-variation-settings: "SOFT" 40, "opsz" 144;
+  font-size: clamp(1.4rem, 3.2vw, 2.2rem);
+  line-height: 1.35;
+  letter-spacing: -0.025em;
+  max-width: 880px; margin: 0 auto;
+  color: var(--ink); font-weight: 400;
+}
+.statement p .drop {
+  font-family: "Fraunces", serif;
+  font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+  font-style: italic;
+  font-size: 4.8rem; line-height: 0.8;
+  float: left; margin: 8px 14px 0 0;
+  color: var(--terra); font-weight: 500;
+}
+.statement p strong {
+  font-weight: 500; color: var(--terra);
+  font-style: italic;
+  font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+}
+
+/* ====== CHAPTER SECTION (unified) ====== */
+.chapter {
+  padding: 90px 0;
+  position: relative;
+}
+.chapter + .chapter { border-top: 1px solid var(--line); }
+.chapter.alt { background: var(--cream); border-top: 1px solid var(--line-strong); border-bottom: 1px solid var(--line-strong); }
+
+.section-kicker {
+  display: flex; align-items: baseline; gap: 28px;
+  margin-bottom: 52px; padding-bottom: 28px;
+  border-bottom: 1px solid var(--ink);
+}
+.section-num {
+  font-family: "Fraunces", serif;
+  font-variation-settings: "SOFT" 0, "opsz" 144;
+  font-size: clamp(3.2rem, 6.5vw, 5rem);
+  line-height: 0.9; color: var(--terra);
+  font-weight: 300; letter-spacing: -0.05em;
+  flex-shrink: 0;
+}
+.section-kicker-body { flex: 1; }
+.section-num-label {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.7rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--ink-dim);
+  display: block; margin-bottom: 10px; font-weight: 500;
+}
+.section-title {
+  font-family: "Fraunces", serif;
+  font-variation-settings: "SOFT" 30, "opsz" 144;
+  font-size: clamp(1.9rem, 4vw, 2.8rem);
+  line-height: 1.05; letter-spacing: -0.03em;
+  font-weight: 400; color: var(--ink);
+}
+.section-title em {
+  font-style: italic;
+  font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+  color: var(--terra); font-weight: 500;
+}
+
+/* Soluzione */
+.solution-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 72px; align-items: start;
+}
+.solution-lead {
+  font-family: "Instrument Serif", serif;
+  font-size: 1.3rem; line-height: 1.45;
+  color: var(--ink-soft); margin-bottom: 32px;
+}
+.check-list { border-top: 1px solid var(--ink); }
+.check-list > div {
+  display: flex; align-items: flex-start; gap: 18px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+  transition: padding-left .3s cubic-bezier(.4,0,.2,1), background .3s ease;
+}
+.check-list > div:hover { padding-left: 14px; background: rgba(194,65,12,0.04); }
+.check-list > div::before {
+  content: '→';
+  font-family: "IBM Plex Mono", monospace;
+  color: var(--terra); font-weight: 500;
+  font-size: 1.1rem; line-height: 1.35;
+  flex-shrink: 0; transition: transform .3s ease;
+}
+.check-list > div:hover::before { transform: translateX(4px); }
+.check-list strong { font-weight: 600; }
+.check-list p { font-size: 1rem; line-height: 1.45; color: var(--ink); }
+
+.side-card {
+  background: var(--ink); color: var(--cream);
+  padding: 42px 34px 36px;
+  position: relative;
+  border: 1px solid var(--ink);
+}
+.side-card::before {
+  content: '';
+  position: absolute;
+  top: -8px; left: -8px;
+  width: 100%; height: 100%;
+  border: 1px solid var(--terra);
+  z-index: -1;
+}
+.side-card h3 {
+  font-family: "Fraunces", serif;
+  font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+  font-style: italic; font-size: 1.75rem;
+  line-height: 1.15; margin-bottom: 22px;
+  font-weight: 400; letter-spacing: -0.02em;
+}
+.side-card h3 .amp { color: var(--terra); }
+.side-card > p {
+  font-size: 0.96rem; line-height: 1.6;
+  color: rgba(250,244,230,0.78); margin-bottom: 26px;
+}
+.side-stat {
+  border-top: 1px solid rgba(250,244,230,0.18);
+  padding-top: 20px; display: grid; gap: 14px;
+}
+.side-stat-row {
+  display: flex; align-items: baseline; justify-content: space-between;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(250,244,230,0.1);
+}
+.side-stat-row:last-child { border-bottom: 0; padding-bottom: 0; }
+.side-stat-label {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: rgba(250,244,230,0.6);
+}
+.side-stat-num {
+  font-family: "Fraunces", serif;
+  font-variation-settings: "SOFT" 30, "opsz" 144;
+  font-size: 1.4rem; color: var(--cream);
+  font-weight: 500; letter-spacing: -0.02em;
+}
+
+/* Flow */
+.flow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--line);
+  border: 1px solid var(--ink);
+  margin-bottom: 80px;
+}
+.flow-step {
+  background: var(--paper);
+  padding: 38px 28px 34px;
+  position: relative;
+  transition: background .3s ease;
+}
+.chapter.alt .flow-step { background: var(--cream); }
+.chapter.alt .flow-step:hover { background: var(--paper); }
+.flow-step:hover { background: var(--cream); }
+.flow-num {
+  font-family: "Fraunces", serif;
+  font-variation-settings: "SOFT" 0, "opsz" 144;
+  font-size: 3.6rem; line-height: 1;
+  color: var(--terra); font-weight: 300;
+  letter-spacing: -0.04em; margin-bottom: 22px;
+  display: block;
+}
+.flow-step h4 {
+  font-family: "Fraunces", serif;
+  font-variation-settings: "SOFT" 30, "opsz" 144;
+  font-size: 1.35rem; font-weight: 500;
+  margin-bottom: 10px; line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+.flow-step p { font-size: 0.96rem; color: var(--ink-soft); line-height: 1.5; }
+.flow-step::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  height: 3px; width: 0;
+  background: var(--terra);
+  transition: width .4s ease;
+}
+.flow-step:hover::after { width: 100%; }
+
+/* Brain */
+.brain-divider {
+  position: relative; text-align: center;
+  margin: 0 auto 52px; max-width: 600px;
+}
+.brain-divider::before, .brain-divider::after {
+  content: '';
+  position: absolute; top: 50%;
+  width: 40%; height: 1px;
+  background: var(--line-strong);
+}
+.brain-divider::before { left: 0; }
+.brain-divider::after { right: 0; }
+.brain-divider span {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72rem; letter-spacing: 0.24em;
+  text-transform: uppercase; color: var(--terra);
+  padding: 0 18px; font-weight: 500;
+  display: inline-block;
+  background: var(--cream);
+  position: relative; z-index: 1;
+}
+.brain-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 64px; align-items: start;
+}
+.brain-title {
+  font-family: "Fraunces", serif;
+  font-variation-settings: "SOFT" 30, "opsz" 144;
+  font-size: clamp(1.7rem, 3.6vw, 2.4rem);
+  line-height: 1.1; letter-spacing: -0.03em;
+  font-weight: 400; margin-bottom: 20px;
+}
+.brain-title em {
+  font-style: italic;
+  font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+  color: var(--terra);
+}
+.brain-lead {
+  font-family: "Instrument Serif", serif;
+  font-size: 1.18rem; line-height: 1.5;
+  color: var(--ink-soft); margin-bottom: 28px;
+}
+.kb-card {
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  padding: 30px 26px;
+  position: relative;
+}
+.kb-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 4px;
+  background: var(--ink);
+}
+.kb-label {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.68rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--ink-dim);
+  margin-bottom: 20px; padding-bottom: 13px;
+  border-bottom: 1px solid var(--line);
+  display: flex; justify-content: space-between;
+  font-weight: 500;
+}
+.kb-label .count { color: var(--terra); }
+.kb-item {
+  display: flex; align-items: center; gap: 14px;
+  padding: 13px 0;
+  border-bottom: 1px dashed var(--line);
+}
+.kb-item:last-of-type { border-bottom: 0; }
+.kb-dot {
+  width: 10px; height: 10px;
+  border: 1.5px solid var(--terra);
+  border-radius: 50%;
+  flex-shrink: 0; position: relative;
+}
+.kb-dot::after {
+  content: '';
+  position: absolute; inset: 2px;
+  background: var(--terra); border-radius: 50%;
+}
+.kb-name {
+  font-family: "Fraunces", serif;
+  font-variation-settings: "SOFT" 30, "opsz" 144;
+  font-size: 1.02rem; font-weight: 500;
+  line-height: 1.25; letter-spacing: -0.015em;
+}
+.kb-meta {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.7rem; color: var(--ink-dim);
+  letter-spacing: 0.08em;
+  text-transform: uppercase; margin-top: 3px;
+}
+.kb-footer {
+  margin-top: 20px; padding-top: 14px;
+  border-top: 1px solid var(--ink);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72rem; text-align: center;
+  color: var(--terra);
+  letter-spacing: 0.12em;
+  text-transform: uppercase; font-weight: 500;
+}
+
+/* ====== TAB FINISHING CTA (end of tab 1) ====== */
+.tab-end-cta {
+  padding: 80px 0 100px;
+  border-top: 1px solid var(--line-strong);
+  background: var(--cream);
+  text-align: center;
+}
+.tab-end-cta h3 {
+  font-family: "Fraunces", serif;
+  font-variation-settings: "SOFT" 40, "opsz" 144;
+  font-size: clamp(1.7rem, 3.5vw, 2.4rem);
+  line-height: 1.1; letter-spacing: -0.03em;
+  font-weight: 400; margin-bottom: 10px;
+}
+.tab-end-cta h3 em {
+  font-style: italic;
+  font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+  color: var(--terra); font-weight: 500;
+}
+.tab-end-cta p {
+  font-family: "Instrument Serif", serif;
+  font-size: 1.15rem; color: var(--ink-soft);
+  margin-bottom: 28px;
+}
+
+/* ====== DEMO PAGE HEADER ====== */
+.demo-header {
+  padding: 70px 0 30px;
+}
+.demo-header-meta {
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--ink-dim);
+  margin-bottom: 40px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.demo-header-meta .sep { color: var(--terra); }
+.demo-headline {
+  font-family: "Fraunces", serif;
+  font-variation-settings: "SOFT" 50, "opsz" 144;
+  font-size: clamp(2.6rem, 6vw, 4.8rem);
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  font-weight: 400;
+  margin-bottom: 22px;
+  max-width: 920px;
+}
+.demo-headline em {
+  font-style: italic;
+  font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+  color: var(--terra); font-weight: 500;
+}
+.demo-lead {
+  font-family: "Instrument Serif", serif;
+  font-size: 1.3rem; line-height: 1.45;
+  color: var(--ink-soft); max-width: 680px;
+}
+
+/* ====== BIG DEMO CTA (first on tab 2) ====== */
+.cta-top {
+  padding: 40px 0 100px;
+}
+.cta-card {
+  padding: 70px 60px;
+  border: 1px solid var(--ink);
+  background: var(--ink); color: var(--cream);
+  position: relative; text-align: center;
+  max-width: 980px; margin: 0 auto;
+}
+.cta-card::before {
+  content: '';
+  position: absolute;
+  top: 10px; left: 10px;
+  width: 100%; height: 100%;
+  border: 1px solid var(--terra);
+  z-index: -1;
+}
+.cta-card::after {
+  content: '✦';
+  position: absolute;
+  top: 22px; right: 30px;
+  color: var(--terra); font-size: 1rem;
+}
+.cta-kicker {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72rem; letter-spacing: 0.24em;
+  text-transform: uppercase; color: var(--terra);
+  margin-bottom: 22px; font-weight: 500;
+}
+.cta-title {
+  font-family: "Fraunces", serif;
+  font-variation-settings: "SOFT" 40, "opsz" 144;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  line-height: 1.02; letter-spacing: -0.04em;
+  font-weight: 400; margin-bottom: 20px;
+  color: var(--cream);
+}
+.cta-title em {
+  font-style: italic;
+  font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+  color: var(--terra); font-weight: 500;
+}
+.cta-sub {
+  font-family: "Instrument Serif", serif;
+  font-size: 1.2rem; line-height: 1.5;
+  color: rgba(250,244,230,0.78);
+  max-width: 620px; margin: 0 auto 32px;
+}
+.cta-card .btn-big {
+  background: var(--cream);
+  color: var(--ink);
+  border-color: var(--cream);
+}
+.cta-card .btn-big:hover {
+  background: var(--terra);
+  border-color: var(--terra);
+  color: var(--cream);
+  transform: translate(-3px, -3px);
+  box-shadow: 5px 5px 0 var(--cream);
+}
+.cta-meta {
+  margin-top: 28px;
+  display: flex; gap: 26px; justify-content: center; flex-wrap: wrap;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72rem; color: rgba(250,244,230,0.55);
+  text-transform: uppercase; letter-spacing: 0.14em;
+}
+.cta-meta span::before {
+  content: '◆'; color: var(--terra);
+  margin-right: 8px; font-size: 0.55rem;
+}
+
+/* ====== SECTORS ====== */
+.sectors-lead {
+  font-family: "Instrument Serif", serif;
+  font-size: 1.25rem; line-height: 1.45;
+  color: var(--ink-soft); margin-bottom: 48px;
+  max-width: 620px;
+}
+.sectors-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px; background: var(--line);
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+}
+.sector {
+  background: var(--paper);
+  padding: 34px 20px 28px;
+  position: relative; cursor: default;
+  transition: background .3s ease;
+}
+.chapter.alt .sector { background: var(--cream); }
+.sector:hover { background: var(--cream); }
+.chapter.alt .sector:hover { background: var(--paper); }
+.sector-num {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.68rem; letter-spacing: 0.18em;
+  color: var(--terra); display: block;
+  margin-bottom: 14px; font-weight: 500;
+}
+.sector h4 {
+  font-family: "Fraunces", serif;
+  font-variation-settings: "SOFT" 30, "opsz" 144;
+  font-size: 1.25rem; font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px; line-height: 1.15;
+}
+.sector p { font-size: 0.85rem; color: var(--ink-dim); line-height: 1.4; }
+.sector::after {
+  content: '↗';
+  position: absolute;
+  top: 28px; right: 20px;
+  color: var(--ink-dim);
+  font-family: "IBM Plex Mono", monospace;
+  opacity: 0;
+  transition: opacity .25s ease, transform .25s ease;
+  font-size: 1rem;
+}
+.sector:hover::after { opacity: 1; color: var(--terra); transform: translate(2px, -2px); }
+.sectors-more {
+  margin-top: 34px; text-align: center;
+  font-family: "Instrument Serif", serif;
+  font-size: 1.08rem; color: var(--ink-soft);
+}
+.sectors-more em {
+  color: var(--terra);
+  font-family: "Fraunces", serif;
+  font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+  font-weight: 500; margin-right: 4px;
+}
+
+/* ====== UNIFIED (sito web + settori tutto insieme) ====== */
+.unified-intro {
+  max-width: 920px;
+  margin: 0 auto 62px;
+  text-align: center;
+  padding-bottom: 38px;
+  border-bottom: 1px solid var(--line);
+}
+.unified-kicker {
+  display: inline-block;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--terra);
+  margin-bottom: 22px; font-weight: 500;
+  padding: 6px 14px;
+  border: 1px solid var(--terra);
+  border-radius: 999px;
+}
+.unified-lead {
+  font-family: "Instrument Serif", serif;
+  font-size: 1.25rem; line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 760px;
+  margin: 22px auto 0;
+}
+.unified-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 64px;
+  margin-bottom: 52px;
+}
+.unified-col { min-width: 0; }
+.unified-subtitle {
+  font-family: "Fraunces", serif;
+  font-variation-settings: "SOFT" 30, "opsz" 144;
+  font-size: 1.55rem; font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.1; margin-bottom: 28px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--ink);
+  color: var(--ink);
+}
+.unified-subtitle em {
+  font-style: italic;
+  font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+  color: var(--terra); font-weight: 500;
+}
+.extra-stack {
+  display: flex; flex-direction: column; gap: 16px;
+}
+.sectors-list {
+  border-top: 1px solid var(--ink);
+}
+.sector-row {
+  display: flex; align-items: flex-start; gap: 18px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+  transition: padding-left .3s cubic-bezier(.4,0,.2,1), background .3s ease;
+}
+.sector-row:hover { padding-left: 14px; background: rgba(194,65,12,0.04); }
+.sector-row:last-of-type { border-bottom: 1px solid var(--ink); }
+.sector-code {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72rem; letter-spacing: 0.14em;
+  color: var(--terra); font-weight: 500;
+  padding: 4px 10px; border: 1px solid var(--terra);
+  border-radius: 999px; flex-shrink: 0;
+  margin-top: 2px;
+}
+.sector-body h4 {
+  font-family: "Fraunces", serif;
+  font-variation-settings: "SOFT" 30, "opsz" 144;
+  font-size: 1.1rem; font-weight: 500;
+  letter-spacing: -0.015em; line-height: 1.15;
+  margin-bottom: 4px;
+}
+.sector-body p {
+  font-size: 0.88rem; color: var(--ink-dim); line-height: 1.4;
+}
+
+/* ====== EXTRA (sito web cards) ====== */
+.extra-lead {
+  font-family: "Instrument Serif", serif;
+  font-size: 1.25rem; line-height: 1.5;
+  color: var(--ink-soft); margin-bottom: 52px;
+  max-width: 780px;
+}
+.extra-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px; margin-bottom: 44px;
+}
+.extra-card {
+  padding: 34px 26px;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  position: relative;
+  transition: transform .3s cubic-bezier(.4,0,.2,1), box-shadow .3s ease;
+}
+.chapter.alt .extra-card { background: var(--cream); }
+.extra-card:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 6px 6px 0 var(--terra);
+}
+.extra-num {
+  font-family: "Fraunces", serif;
+  font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+  font-style: italic;
+  font-size: 2rem; color: var(--terra);
+  font-weight: 500; display: block;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em; line-height: 1;
+}
+.extra-card h4 {
+  font-family: "Fraunces", serif;
+  font-variation-settings: "SOFT" 30, "opsz" 144;
+  font-size: 1.3rem; font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px; line-height: 1.15;
+}
+.extra-card p {
+  font-size: 0.95rem;
+  color: var(--ink-soft); line-height: 1.5;
+}
+.extra-note {
+  padding: 30px 36px;
+  background: var(--paper);
+  border-left: 4px solid var(--terra);
+  max-width: 820px; margin: 0 auto;
+  font-family: "Instrument Serif", serif;
+  font-size: 1.12rem; line-height: 1.5;
+  color: var(--ink);
+}
+.chapter.alt .extra-note { background: var(--cream); }
+.extra-note strong {
+  font-family: "Fraunces", serif;
+  font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+  font-style: italic; color: var(--terra);
+  font-weight: 500; font-size: 1.3rem;
+  display: block; margin-bottom: 6px;
+  letter-spacing: -0.02em;
+}
+
+/* ====== BACK LINK ====== */
+.back-row { padding: 60px 0 100px; text-align: center; }
+.back-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.76rem; text-transform: uppercase;
+  letter-spacing: 0.14em; color: var(--ink-soft);
+  padding: 12px 20px; background: none;
+  border: 1px solid var(--line-strong);
+  cursor: pointer;
+  transition: color .2s ease, border-color .2s ease, background .2s ease;
+}
+.back-link:hover { color: var(--terra); border-color: var(--terra); background: var(--cream); }
+.back-link .arr { transition: transform .25s ease; }
+.back-link:hover .arr { transform: translateX(-4px); }
+
+/* ====== FOOTER ====== */
+footer {
+  padding: 56px 0;
+  border-top: 1px solid var(--line-strong);
+  background: var(--paper-2);
+}
+.footer-inner {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 40px; flex-wrap: wrap;
+}
+.footer-name {
+  font-family: "Fraunces", serif;
+  font-variation-settings: "SOFT" 50, "opsz" 144;
+  font-style: italic;
+  font-size: 1.25rem; font-weight: 500;
+  margin-bottom: 6px; letter-spacing: -0.02em;
+}
+.footer-role {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.74rem; color: var(--ink-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.14em; margin-bottom: 14px;
+}
+.footer-tag { font-size: 0.95rem; color: var(--ink-soft); max-width: 320px; }
+.footer-right {
+  text-align: right;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72rem; color: var(--ink-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.14em; line-height: 1.8;
+}
+.footer-right .footer-colophon { color: var(--ink); }
+.footer-right .footer-note em {
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  text-transform: none; letter-spacing: 0;
+  color: var(--terra);
+}
+
+/* ====== FLOAT WA ====== */
+.float-wa {
+  position: fixed;
+  bottom: 28px; right: 28px;
+  background: var(--ink); color: var(--cream);
+  width: 58px; height: 58px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 100;
+  transition: transform .25s cubic-bezier(.4,0,.2,1), background .25s ease;
+  border: 1px solid var(--ink);
+  box-shadow: 4px 4px 0 var(--terra);
+}
+.float-wa:hover {
+  background: var(--terra); border-color: var(--terra);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+.float-wa svg { width: 26px; height: 26px; }
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 980px) {
+  .nav-inner { flex-wrap: wrap; padding: 14px 22px; gap: 12px; }
+  .tabs { order: 3; width: 100%; }
+  .tab-btn { flex: 1; justify-content: flex-start; padding: 10px 14px; }
+  .tab-title { font-size: 0.9rem; }
+  .hero-grid { grid-template-columns: 1fr; gap: 70px; }
+  .hero-right { padding-top: 0; }
+  .seal { right: 10px; }
+  .solution-grid { grid-template-columns: 1fr; gap: 48px; }
+  .brain-grid { grid-template-columns: 1fr; gap: 48px; }
+  .flow { grid-template-columns: 1fr; }
+  .sectors-grid { grid-template-columns: repeat(2, 1fr); }
+  .extra-grid { grid-template-columns: 1fr; }
+  .unified-grid { grid-template-columns: 1fr; gap: 56px; }
+  .footer-inner { flex-direction: column; }
+  .footer-right { text-align: left; }
+  .section-kicker { flex-direction: column; gap: 12px; align-items: flex-start; }
+  .cta-card { padding: 56px 32px; }
+}
+@media (max-width: 560px) {
+  .wrap { padding: 0 22px; }
+  .brand-tag { display: none; }
+  .hero-meta-top, .demo-header-meta { font-size: 0.6rem; letter-spacing: 0.12em; }
+  .sectors-grid { grid-template-columns: 1fr; }
+  .chat-card { transform: none; box-shadow: 8px 8px 0 var(--ochre); }
+  .seal { width: 100px; height: 100px; font-size: 0.6rem; top: -10px; right: -5px; }
+  .seal-inner em { font-size: 1.15rem; }
+  .tab-kicker { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV + TABS -->
+<nav class="topnav">
+  <div class="nav-inner">
+    <div class="brand">
+      <span class="brand-mark">Receptionist<span class="brand-dot">.</span></span>
+      <span class="brand-tag">AI H24 · IT</span>
+    </div>
+    <div class="tabs" role="tablist">
+      <button class="tab-btn active" data-tab="main" role="tab">
+        <span class="tab-label">
+          <span class="tab-kicker">Scheda I</span>
+          <span class="tab-title">Il servizio</span>
+        </span>
+      </button>
+      <button class="tab-btn" data-tab="demo" role="tab">
+        <span class="tab-label">
+          <span class="tab-kicker">Scheda II</span>
+          <span class="tab-title">Prenota demo</span>
+        </span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ============================ -->
+<!-- TAB 1 — IL SERVIZIO (01 + 02) -->
+<!-- ============================ -->
+<main id="tab-main" class="tab-panel active">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="wrap">
+      <div class="hero-meta-top">
+        <span>Edizione 01 <span class="sep">/</span> 2026</span>
+        <span>Receptionist AI <span class="sep">·</span> WhatsApp 24/7</span>
+        <span>Scheda I <span class="sep">—</span> Il servizio</span>
+      </div>
+      <div class="hero-grid">
+        <div class="hero-left">
+          <div class="hero-pill"><span class="hero-pill-dot"></span>Attivo 24/7 su WhatsApp</div>
+          <h1 class="headline">
+            Il tuo receptionist <em>AI</em> che risponde <span class="bold">anche di notte</span>, nei weekend e in pausa pranzo.
+          </h1>
+          <p class="hero-sub">
+            Non perdere più clienti fuori orario. Un assistente virtuale su WhatsApp che risponde, prenota appuntamenti e manda promemoria — H24, 7 giorni su 7.
+          </p>
+          <div class="hero-cta-row">
+            <button class="btn btn-primary" data-goto="demo">Prenota demo <span class="arr">→</span></button>
+            <a href="#soluzione" class="btn btn-ghost">Scopri il servizio <span class="arr">↓</span></a>
+          </div>
+          <div class="hero-meta-list">
+            <span>Zero installazioni</span>
+            <span>Scheda progetto in 7 giorni</span>
+            <span>Supporto italiano</span>
+          </div>
+        </div>
+        <div class="hero-right">
+          <div class="seal">
+            <div class="seal-inner">Attivo<em>24/7</em>✦ non dorme</div>
+          </div>
+          <div class="chat-card">
+            <div class="chat-who">Studio Dentistico Rossi</div>
+            <div class="bubble user">Salve, vorrei prenotare una pulizia dei denti. Avete posto questa settimana?<span class="time">23:47</span></div>
+            <div class="bubble bot">Buonasera. Abbiamo disponibilità giovedì alle 16:00 o venerdì alle 10:30. Quale preferisce?<span class="time">23:47</span></div>
+            <div class="bubble user">Giovedì alle 16 va bene<span class="time">23:48</span></div>
+            <div class="bubble bot">Perfetto. Ho bloccato giovedì 23 aprile alle 16:00 a suo nome. Le mando un promemoria il giorno prima.<span class="time">23:48</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- STATEMENT (merged flow, softer break) -->
+  <section class="statement">
+    <div class="wrap">
+      <p>
+        <span class="drop">L</span>e piccole imprese italiane perdono fino al <strong>40%</strong> dei potenziali clienti perché non rispondono in tempo. Un assistente su WhatsApp che non dorme mai cambia il gioco.
+      </p>
+    </div>
+  </section>
+
+  <!-- CHAPTER 01 — SOLUZIONE -->
+  <section class="chapter" id="soluzione">
+    <div class="wrap">
+      <div class="section-kicker">
+        <div class="section-num">01</div>
+        <div class="section-kicker-body">
+          <span class="section-num-label">Capitolo I · La soluzione</span>
+          <h2 class="section-title">Un assistente <em>AI</em> su WhatsApp che non stacca mai.</h2>
+        </div>
+      </div>
+      <div class="solution-grid">
+        <div>
+          <p class="solution-lead">
+            Risponde in italiano, capisce il contesto, prende appuntamenti in agenda e ti gira tutto già organizzato. Parla come un receptionist umano — ma non dorme, non si ammala, non va in ferie.
+          </p>
+          <div class="check-list">
+            <div><p><strong>Risponde H24</strong> a domande frequenti (orari, prezzi, servizi, indirizzo)</p></div>
+            <div><p><strong>Prenota appuntamenti</strong> direttamente in agenda</p></div>
+            <div><p><strong>Manda promemoria automatici</strong> il giorno prima</p></div>
+            <div><p><strong>Ti passa i casi complessi</strong> quando serve umano</p></div>
+            <div><p><strong>Lingua italiana naturale</strong>, non sembra un bot</p></div>
+          </div>
+        </div>
+        <aside class="side-card">
+          <h3>Non ti accorgi <span class="amp">&amp;</span> di parlare con un bot.</h3>
+          <p>Il tono è italiano, caldo, professionale. Il cliente chiede, il bot risponde come faresti tu — solo più veloce e senza mai dimenticare un appuntamento.</p>
+          <div class="side-stat">
+            <div class="side-stat-row"><span class="side-stat-label">Tempo risposta</span><span class="side-stat-num">&lt; 30s</span></div>
+            <div class="side-stat-row"><span class="side-stat-label">Disponibilità</span><span class="side-stat-num">24/7</span></div>
+            <div class="side-stat-row"><span class="side-stat-label">Setup</span><span class="side-stat-num">7 gg</span></div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTER 02 — COME FUNZIONA + CERVELLO -->
+  <section class="chapter alt" id="come-funziona">
+    <div class="wrap">
+      <div class="section-kicker">
+        <div class="section-num">02</div>
+        <div class="section-kicker-body">
+          <span class="section-num-label">Capitolo II · Come funziona</span>
+          <h2 class="section-title">Dal messaggio all'appuntamento, <em>in tre passaggi</em>.</h2>
+        </div>
+      </div>
+
+      <div class="flow">
+        <div class="flow-step">
+          <span class="flow-num">01</span>
+          <h4>Il cliente scrive su WhatsApp</h4>
+          <p>Il cliente scrive al bot per info o per prenotare.</p>
+        </div>
+        <div class="flow-step">
+          <span class="flow-num">02</span>
+          <h4>Il bot AI risponde</h4>
+          <p>In italiano naturale, capisce, prenota, dà info precise.</p>
+        </div>
+        <div class="flow-step">
+          <span class="flow-num">03</span>
+          <h4>Tu ricevi tutto ordinato</h4>
+          <p>Appuntamenti in agenda, riepilogo chat, notifiche.</p>
+        </div>
+      </div>
+
+      <div class="brain-divider"><span>Il cervello del bot</span></div>
+
+      <div class="brain-grid" id="cervello">
+        <div>
+          <h2 class="brain-title">Il bot sa <em>tutto</em> della tua attività.</h2>
+          <p class="brain-lead">
+            Non è solo un prenotatore. Tu carichi i tuoi documenti — listino prezzi, orari, servizi, FAQ, regolamenti, menù, protocolli — e il bot li studia. Da quel momento parla con i clienti come faresti tu.
+          </p>
+          <div class="check-list">
+            <div><p><strong>Carichi i tuoi file</strong> (PDF, Word, listini, siti, note)</p></div>
+            <div><p><strong>Il bot li apprende</strong> e memorizza ogni dettaglio</p></div>
+            <div><p><strong>Risponde da esperto</strong> su servizi, prezzi, procedure</p></div>
+            <div><p><strong>Offre vera assistenza</strong>, non solo prenotazioni standard</p></div>
+            <div><p><strong>Aggiorni le info quando vuoi</strong> caricando nuovi file</p></div>
+          </div>
+        </div>
+        <div>
+          <div class="kb-card">
+            <div class="kb-label"><span>Base di conoscenza</span><span class="count">04 doc</span></div>
+            <div class="kb-item">
+              <span class="kb-dot"></span>
+              <div>
+                <div class="kb-name">Listino servizi 2026.pdf</div>
+                <div class="kb-meta">Appreso · 47 servizi</div>
+              </div>
+            </div>
+            <div class="kb-item">
+              <span class="kb-dot"></span>
+              <div>
+                <div class="kb-name">Orari e turni.docx</div>
+                <div class="kb-meta">Appreso</div>
+              </div>
+            </div>
+            <div class="kb-item">
+              <span class="kb-dot"></span>
+              <div>
+                <div class="kb-name">FAQ clienti.pdf</div>
+                <div class="kb-meta">Appreso · 28 domande</div>
+              </div>
+            </div>
+            <div class="kb-item">
+              <span class="kb-dot"></span>
+              <div>
+                <div class="kb-name">Protocolli trattamenti.pdf</div>
+                <div class="kb-meta">Appreso</div>
+              </div>
+            </div>
+            <div class="kb-footer">Bot addestrato · parla come un tuo collaboratore</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- END OF TAB 1 — invito alla scheda 2 -->
+  <section class="tab-end-cta">
+    <div class="wrap">
+      <h3>Convinto? <em>Passa alla demo.</em></h3>
+      <p>Nella seconda scheda: prenota gratis, scopri i settori e il sito web su misura.</p>
+      <button class="btn btn-primary btn-big" data-goto="demo">Vai alla scheda II <span class="arr">→</span></button>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================ -->
+<!-- TAB 2 — PRENOTA DEMO (03 + 04) -->
+<!-- CTA first, then sectors, then sito web -->
+<!-- ============================ -->
+<main id="tab-demo" class="tab-panel">
+
+  <header class="demo-header">
+    <div class="wrap">
+      <div class="demo-header-meta">
+        <span>Scheda II <span class="sep">/</span> II</span>
+        <span>Demo <span class="sep">·</span> Settori <span class="sep">·</span> Sito web</span>
+        <span>Gratis <span class="sep">—</span> 20 minuti</span>
+      </div>
+      <h1 class="demo-headline">Prenota adesso la <em>demo gratuita</em>.</h1>
+      <p class="demo-lead">
+        20 minuti per vedere dal vivo come il bot risponderebbe ai tuoi clienti reali. Se ti piace, in 7 giorni preparo la tua proposta AI su misura. Se no, hai perso solo 20 minuti.
+      </p>
+    </div>
+  </header>
+
+  <!-- BIG DEMO CTA (first — inverted) -->
+  <section class="cta-top">
+    <div class="wrap">
+      <div class="cta-card">
+        <div class="cta-kicker">Gratis · Senza impegno · 20 minuti</div>
+        <h2 class="cta-title">Scrivimi su <em>WhatsApp</em>.</h2>
+        <p class="cta-sub">Ti mostro dal vivo come il bot risponderebbe ai tuoi clienti reali, con le tue FAQ, il tuo listino, il tuo tono.</p>
+        <a href="https://wa.me/393284405733?text=Ciao%20Leonardo%2C%20ho%20visto%20il%20tuo%20sito%20Receptionist%20AI%20H24%20e%20vorrei%20prenotare%20la%20demo%20gratuita%20di%2020%20minuti.%20Grazie!"
+           class="btn btn-big"
+           target="_blank"
+           rel="noopener">Prenota demo <span class="arr">→</span></a>
+        <div class="cta-meta">
+          <span>Risposta entro 2 ore</span>
+          <span>Nessun impegno</span>
+          <span>Demo personalizzata</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- UNIFIED — Sito web + Per chi è (no numbers, tutto insieme) -->
+  <section class="chapter alt" id="unified">
+    <div class="wrap">
+      <div class="unified-intro">
+        <span class="unified-kicker">Sito web · Settori · Personalizzazione</span>
+        <h2 class="section-title">Non solo bot: faccio anche il tuo <em>sito web</em>, pensato per la tua <em>impresa</em>.</h2>
+        <p class="unified-lead">
+          Se non hai un sito o quello che hai è vecchio, lo costruisco io. Veloce, mobile-first, ottimizzato per Google. Il sito porta clienti, il bot li gestisce — e qualunque sia il tuo settore, il bot parla la sua lingua.
+        </p>
+      </div>
+
+      <div class="unified-grid">
+        <div class="unified-col">
+          <h3 class="unified-subtitle"><em>Sito web</em> su misura</h3>
+          <div class="extra-stack">
+            <div class="extra-card">
+              <span class="extra-num">i.</span>
+              <h4>Landing o sito completo</h4>
+              <p>Design moderno, veloce, ottimizzato per Google. Mobile-first.</p>
+            </div>
+            <div class="extra-card">
+              <span class="extra-num">ii.</span>
+              <h4>Integrato col bot</h4>
+              <p>Il sito e il bot WhatsApp parlano tra loro. Il cliente prenota da entrambi.</p>
+            </div>
+            <div class="extra-card">
+              <span class="extra-num">iii.</span>
+              <h4>100% modellabile</h4>
+              <p>Niente pacchetti rigidi. Ogni funzione si adatta alla tua attività.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="unified-col">
+          <h3 class="unified-subtitle">Per quali <em>imprese</em></h3>
+          <div class="sectors-list">
+            <div class="sector-row">
+              <span class="sector-code">DENT</span>
+              <div class="sector-body">
+                <h4>Studi dentistici</h4>
+                <p>Prenotazioni, promemoria, richiami</p>
+              </div>
+            </div>
+            <div class="sector-row">
+              <span class="sector-code">MED</span>
+              <div class="sector-body">
+                <h4>Studi medici</h4>
+                <p>Visite, ricette, richiami</p>
+              </div>
+            </div>
+            <div class="sector-row">
+              <span class="sector-code">FIT</span>
+              <div class="sector-body">
+                <h4>Palestre</h4>
+                <p>Iscrizioni, prove, info</p>
+              </div>
+            </div>
+            <div class="sector-row">
+              <span class="sector-code">BEA</span>
+              <div class="sector-body">
+                <h4>Centri estetici</h4>
+                <p>Trattamenti, agenda</p>
+              </div>
+            </div>
+            <div class="sector-row">
+              <span class="sector-code">AUT</span>
+              <div class="sector-body">
+                <h4>Officine</h4>
+                <p>Preventivi, tagliandi</p>
+              </div>
+            </div>
+          </div>
+          <p class="sectors-more">
+            <em>&amp; anche</em> agenzie immobiliari · parrucchieri · ristoranti · scuole di lingua
+          </p>
+        </div>
+      </div>
+
+      <div class="extra-note">
+        <strong>Tutto è personalizzabile.</strong>
+        Mi dici come lavori, cosa ti serve, e costruiamo insieme la soluzione giusta per te. Sentiamoci senza impegno.
+      </div>
+    </div>
+  </section>
+
+  <!-- BACK LINK -->
+  <section class="back-row">
+    <div class="wrap">
+      <button class="back-link" data-goto="main"><span class="arr">←</span> Torna al servizio</button>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap footer-inner">
+    <div class="footer-left">
+      <div class="footer-name">Leonardo Taccalite</div>
+      <div class="footer-role">Ingegneria Biomedica · 22 anni</div>
+      <div class="footer-tag">Automazioni AI per piccole imprese italiane.</div>
+    </div>
+    <div class="footer-right">
+      <div class="footer-colophon">© 2026 Receptionist AI H24</div>
+      <div class="footer-note">Composto in <em>Fraunces</em> &amp; IBM Plex</div>
+      <div class="footer-note">Made in Italia 🇮🇹</div>
+    </div>
+  </div>
+</footer>
+
+<a class="float-wa"
+   href="https://wa.me/393284405733?text=Ciao%20Leonardo%2C%20vorrei%20info%20sul%20servizio%20Receptionist%20AI%20H24."
+   target="_blank"
+   rel="noopener"
+   aria-label="Scrivici su WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.7-.8-2-.9-.3-.1-.5-.2-.7.2-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.2-.4-2.3-1.4-.8-.8-1.4-1.7-1.6-2-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.3 5.2 4.6.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.3-.7.3-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.6 1.4 5.1L2 22l5-1.3c1.5.8 3.2 1.3 5 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+</a>
+
+<script>
+  const tabs = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.tab-panel');
+  const gotos = document.querySelectorAll('[data-goto]');
+
+  function switchTab(key) {
+    tabs.forEach(t => t.classList.toggle('active', t.dataset.tab === key));
+    panels.forEach(p => p.classList.toggle('active', p.id === 'tab-' + key));
+    history.replaceState(null, '', '#' + key);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  tabs.forEach(t => t.addEventListener('click', () => switchTab(t.dataset.tab)));
+  gotos.forEach(b => b.addEventListener('click', () => switchTab(b.dataset.goto)));
+
+  const initHash = location.hash.replace('#', '');
+  if (initHash === 'demo') switchTab('demo');
+</script>
+
+</body>
+</html>
